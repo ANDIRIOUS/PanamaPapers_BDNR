@@ -1,6 +1,5 @@
 version: '3'
 services:
-
   neo4j:
     image: neo4j:5.13.0
     ports:
@@ -17,11 +16,13 @@ services:
       - NEO4J_PLUGINS=["apoc"]
 
   jupyter:
-    image: jupyter/scipy-notebook
+    build: .
     ports:
       - "8888:8888"
     volumes:
       - ./notebooks:/home/jovyan/work
+    environment:
+      - JUPYTER_TOKEN=
 
 volumes:
   neo4j-data:
