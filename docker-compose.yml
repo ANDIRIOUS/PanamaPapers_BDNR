@@ -10,6 +10,7 @@ services:
       - ./neo4j/data:/data
       - ./neo4j/logs:/logs
     environment:
+      - NEO4J_dbms_security_auth__enabled=false
       - NEO4J_apoc_export_file_enabled=true
       - NEO4J_apoc_import_file_enabled=true
       - NEO4J_apoc_import_file_use__neo4j__config=true
