@@ -16,11 +16,13 @@ services:
       - NEO4J_PLUGINS=["apoc"]
 
   jupyter:
-    build: .  # Esta línea indica que Docker debe construir la imagen a partir del Dockerfile en el directorio actual
+build: .  # Esta línea indica que Docker debe construir la imagen a partir del Dockerfile en el directorio actual
     ports:
       - "8888:8888"
     volumes:
       - ./notebooks:/home/jovyan/work
+    environment:
+      - JUPYTER_TOKEN=
 
 volumes:
   neo4j-data:
