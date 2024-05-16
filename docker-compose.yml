@@ -6,8 +6,8 @@ services:
       - "7474:7474"
       - "7687:7687"
     volumes:
-      - ./neo4j/data:/data
-      - ./neo4j/logs:/logs
+      - neo4j-data:/data
+      - neo4j-logs:/logs
     environment:
       - NEO4J_dbms_security_auth__enabled=false
       - NEO4J_apoc_export_file_enabled=true
@@ -16,11 +16,12 @@ services:
       - NEO4J_PLUGINS=["apoc"]
 
   jupyter:
-build: .  # Esta línea indica que Docker debe construir la imagen a partir del Dockerfile en el directorio actual
+    build: .  # Esta línea indica que Docker debe construir la imagen a partir del Dockerfile en el directorio actual
     ports:
       - "8888:8888"
     volumes:
-      - ./notebooks:/home/jovyan/work
+      - notebooks:/home/jovyan/work
+      - ./notebooks/prueba.ipynb:/home/jovyan/work/prueba.ipynb
     environment:
       - JUPYTER_TOKEN=
 
